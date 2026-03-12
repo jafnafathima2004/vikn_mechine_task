@@ -18,7 +18,7 @@ class Appcolors {
   static  List<Color> primeryGradient = [
      Color(0xFF000000), 
     Color(0xFF6A6E00), 
-    Color(0xFF004C5C), 
+    Color(0xFF1C3347), 
     Color(0xFF4B004F),
      Color(0xFF000000), 
   ];
