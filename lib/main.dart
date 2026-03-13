@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       designSize: Size(430, 932),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-      home: ProfileScreen(),
+      home: LoginScreen(),
       ),
     );
   }

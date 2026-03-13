@@ -20,9 +20,10 @@ class Appcolors {
   // gradient
   static  List<Color> primeryGradient = [
      Color(0xFF000000), 
-    Color(0xFF6A6E00), 
-    Color(0xFF1C3347), 
-    Color(0xFF4B004F),
+    Color.fromARGB(255, 43, 44, 1),
+    Color(0xFF1C3347),
+      Color(0xFF000000),  
+    Color.fromARGB(255, 27, 0, 29),
      Color(0xFF000000), 
   ];
 }

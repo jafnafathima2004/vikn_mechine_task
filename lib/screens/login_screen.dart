@@ -27,8 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: Appcolors.primeryGradient,
-              begin: Alignment.topRight,
-              end: Alignment.bottomRight,
+              begin: Alignment.topLeft,
+              end: Alignment.bottomLeft,
             ),
           ),
 
@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 50.h),
+                  SizedBox(height: 180.h),
                   Center(
                     child: Text(
                       "Login",
@@ -54,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 27.h),
+                  SizedBox(height: 50.h),
                   Container(
                     decoration: BoxDecoration(
                       color: Appcolors.textform,
@@ -68,11 +68,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           decoration: InputDecoration(
                             hintText: "Enter username",
                             border: InputBorder.none,
-                            prefixIcon: Image.asset(
-                              Assetreasource.usericon,
-                              height: 24.h,
-                              width: 24.w,
-                              fit: BoxFit.contain,
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(
+                                Assetreasource.usericon,
+                                height: 14.h,
+                                width: 14.w,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                             contentPadding: EdgeInsets.all(12.w),
                           ),
@@ -93,13 +96,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             hintText: "Enter password",
                             border: InputBorder.none,
                             contentPadding: EdgeInsets.all(12.w),
-                            prefixIcon: Image.asset(
-                              Assetreasource.keyicon,
-                              height: 24.h,
-                              width: 24.w,
-                              fit: BoxFit.contain,
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.asset(
+                                Assetreasource.keyicon,
+                                height: 14.h,
+                                width: 14.w,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                             suffixIcon: IconButton(
+                              padding: EdgeInsets.zero,
                               onPressed: () {
                                 setState(() {
                                   ishidden = !ishidden;
@@ -123,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(height: 20.h),
+                  SizedBox(height: 29.h),
                   Center(
                     child: Text(
                       "Forgotten Password?",
@@ -144,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Appcolors.buttoncolor,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadiusGeometry.circular(13.r),
+                          borderRadius: BorderRadius.circular(13.r),
                         ),
                       ),
                       child: Row(
@@ -160,7 +167,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30.h),
+                  SizedBox(height: 90.h),
                   Center(
                     child: Text(
                       "Don't have an account?",
