@@ -14,7 +14,11 @@ class _FilterScreenState extends State<FilterScreen> {
   String selectedvalue = "This Month";
   String selectedrole = "Customer";
   DateTime starteddate = DateTime(DateTime.now().year, DateTime.now().month, 1);
-  DateTime endeddate = DateTime(DateTime.now().year,DateTime.now().month + 1,0,);
+  DateTime endeddate = DateTime(
+    DateTime.now().year,
+    DateTime.now().month + 1,
+    0,
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +44,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 Text("Filters", style: Apptextstyle.medium()),
                 SizedBox(width: 160.w),
                 Icon(Icons.visibility_outlined, color: Appcolors.buttoncolor),
-                SizedBox(width: 30.h,),
+                SizedBox(width: 30.h),
                 Text(
                   "filter",
                   style: Apptextstyle.small(fontColor: Appcolors.icon),
@@ -48,14 +52,14 @@ class _FilterScreenState extends State<FilterScreen> {
               ],
             ),
             Divider(color: Appcolors.border),
-            SizedBox(height: 18.h,),
+            SizedBox(height: 18.h),
             Center(
               child: Container(
                 height: 35.h,
                 width: 150.w,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30.r),
-                  color: Appcolors.textform
+                  color: Appcolors.textform,
                 ),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton<String>(
@@ -65,7 +69,12 @@ class _FilterScreenState extends State<FilterScreen> {
                     items: ["This Month", "All Month"].map((value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Center(child: Text(value, style: Apptextstyle.small(fontSize: 15))),
+                        child: Center(
+                          child: Text(
+                            value,
+                            style: Apptextstyle.small(fontSize: 15),
+                          ),
+                        ),
                       );
                     }).toList(),
                     onChanged: (String? newvalue) {
@@ -77,7 +86,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 18.h,),
+            SizedBox(height: 18.h),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -92,14 +101,20 @@ class _FilterScreenState extends State<FilterScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:[
-                        Center(child: Icon(Icons.calendar_month_outlined,color: Appcolors.buttoncolor,)) ,
+                      children: [
+                        Center(
+                          child: Icon(
+                            Icons.calendar_month_outlined,
+                            color: Appcolors.buttoncolor,
+                          ),
+                        ),
                         Center(
                           child: Text(
-                          "${starteddate.day}/${starteddate.month}/${starteddate.year}",
-                          style: Apptextstyle.small(fontSize: 15),
-                                                ),
-                        ),]
+                            "${starteddate.day}/${starteddate.month}/${starteddate.year}",
+                            style: Apptextstyle.small(fontSize: 15),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Container(
@@ -112,22 +127,28 @@ class _FilterScreenState extends State<FilterScreen> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children:[ 
-                        Center(child: Icon(Icons.calendar_month_outlined,color: Appcolors.buttoncolor,)) ,
+                      children: [
+                        Center(
+                          child: Icon(
+                            Icons.calendar_month_outlined,
+                            color: Appcolors.buttoncolor,
+                          ),
+                        ),
                         Center(
                           child: Text(
-                          "${endeddate.day}/${endeddate.month}/${endeddate.year}",
-                          style: Apptextstyle.small(fontSize: 15),
-                                                ),
-                        ),]
+                            "${endeddate.day}/${endeddate.month}/${endeddate.year}",
+                            style: Apptextstyle.small(fontSize: 15),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 17.h,),
+            SizedBox(height: 17.h),
             Divider(color: Appcolors.border),
-            SizedBox(height: 35.h,),
+            SizedBox(height: 35.h),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -139,7 +160,12 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Appcolors.pending,
                     borderRadius: BorderRadius.circular(30.r),
                   ),
-                  child: Center(child: Text("Pending", style: Apptextstyle.small(fontSize: 15))),
+                  child: Center(
+                    child: Text(
+                      "Pending",
+                      style: Apptextstyle.small(fontSize: 15),
+                    ),
+                  ),
                 ),
                 Container(
                   height: 43.h,
@@ -177,7 +203,7 @@ class _FilterScreenState extends State<FilterScreen> {
               width: 376.w,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.r),
-                color: Appcolors.textform
+                color: Appcolors.textform,
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
@@ -187,7 +213,15 @@ class _FilterScreenState extends State<FilterScreen> {
                   items: ["Customer", "Admin"].map((value) {
                     return DropdownMenuItem(
                       value: value,
-                      child: Center(child: Text(value, style: Apptextstyle.small(fontSize: 15,fontColor: Appcolors.roletext))),
+                      child: Center(
+                        child: Text(
+                          value,
+                          style: Apptextstyle.small(
+                            fontSize: 15,
+                            fontColor: Appcolors.roletext,
+                          ),
+                        ),
+                      ),
                     );
                   }).toList(),
                   onChanged: (String? newvalue) {
@@ -198,7 +232,7 @@ class _FilterScreenState extends State<FilterScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 22.h,),
+            SizedBox(height: 22.h),
             Divider(color: Appcolors.border),
             SizedBox(height: 20.h),
             Container(
@@ -212,8 +246,8 @@ class _FilterScreenState extends State<FilterScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Savad farooq", style: Apptextstyle.small(fontSize: 15)),
-                  SizedBox(width: 4.w,),
-                  Icon(Icons.close, color: Appcolors.icon,size: 14,),
+                  SizedBox(width: 4.w),
+                  Icon(Icons.close, color: Appcolors.icon, size: 14),
                 ],
               ),
             ),

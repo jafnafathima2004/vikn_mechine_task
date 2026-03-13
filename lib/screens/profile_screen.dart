@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vikn_mechine_task/controllers/profile_controller.dart';
 import 'package:vikn_mechine_task/core/assets/assetreasource.dart';
 import 'package:vikn_mechine_task/core/theme/appcolors.dart';
 import 'package:vikn_mechine_task/core/theme/apptextstyle.dart';
 import 'package:vikn_mechine_task/screens/login_screen.dart';
-import 'package:vikn_mechine_task/shared_pref_helper/shared_prefrence.dart';
+import 'package:vikn_mechine_task/shared_pref_helper/shared_prference.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,6 +15,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  ProfileController controller = ProfileController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller.fetchProfile();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +32,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(onPressed: (){
-              Navigator.pop(context);
-            }, icon: Icon(Icons.arrow_back,color: Appcolors.text,)),
+            IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back, color: Appcolors.text),
+            ),
             SizedBox(height: 30.h),
             Container(
               padding: EdgeInsets.all(16),
@@ -54,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           height: 73.88.h,
                         ),
                       ),
-                    
+
                       Column(
                         children: [
                           Text(
@@ -71,7 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                  
+
                       Image.asset(
                         Assetreasource.edit,
                         height: 24.h,
@@ -104,21 +116,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: Appcolors.cards,
                                 borderRadius: BorderRadius.circular(30.r),
                               ),
-                               
-                                child: Center(
-                                  child: SizedBox(
-                                     height: 20.h,
-                                        width: 20.w,
-                                    child: Image.asset(
-                                        Assetreasource.stars,
-                                         fit: BoxFit.contain,
-                                      
-                                       
-                                      ),
+
+                              child: Center(
+                                child: SizedBox(
+                                  height: 20.h,
+                                  width: 20.w,
+                                  child: Image.asset(
+                                    Assetreasource.stars,
+                                    fit: BoxFit.contain,
                                   ),
                                 ),
-                                
-                              
+                              ),
                             ),
                           ),
                           Positioned(
@@ -168,21 +176,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 color: Appcolors.cards,
                                 borderRadius: BorderRadius.circular(30.r),
                               ),
-                              child:
-                               Center(
-                                 child: SizedBox(
-                                   height: 20.h,
-                                    width: 20.w,
-                                   child: Image.asset(
+                              child: Center(
+                                child: SizedBox(
+                                  height: 20.h,
+                                  width: 20.w,
+                                  child: Image.asset(
                                     Assetreasource.verifytick,
-                                   
+
                                     fit: BoxFit.contain,
-                                                                 ),
-                                 ),
-                               ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
-                                Positioned(
+                          Positioned(
                             top: 30.h,
                             left: 65.w,
                             child: Column(
@@ -194,10 +201,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       "KYC",
                                       style: Apptextstyle.small(fontSize: 18),
                                     ),
-                                    Icon(Icons.check_circle_outline,size: 10,color: Appcolors.text,)
+                                    Icon(
+                                      Icons.check_circle_outline,
+                                      size: 10,
+                                      color: Appcolors.text,
+                                    ),
                                   ],
                                 ),
-                               
+
                                 Text(
                                   "verified",
                                   style: Apptextstyle.small(
@@ -211,59 +222,145 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 19.h,),
+                  SizedBox(height: 19.h),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Appcolors.box,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(30.r)
-                      )
+                        borderRadius: BorderRadiusGeometry.circular(30.r),
+                      ),
                     ),
                     onPressed: () async {
-                        await SharedPrefHelper.logout();
-                      Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
-                    }, child: Row(
+                      await SharedPrefHelper.logout();
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        (route) => false,
+                      );
+                    },
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.logout_outlined,color: Appcolors.logout,size: 24,),
-                      Text("Logout",style: Apptextstyle.small(fontColor: Appcolors.logout,fontSize: 15),)
-                    ],
-                  ))
+                      children: [
+                        Icon(
+                          Icons.logout_outlined,
+                          color: Appcolors.logout,
+                          size: 24,
+                        ),
+                        Text(
+                          "Logout",
+                          style: Apptextstyle.small(
+                            fontColor: Appcolors.logout,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
-            SizedBox(height: 35.h,),
+            SizedBox(height: 35.h),
             Expanded(
               child: ListView(
                 children: [
-                 ListTile(
-                  leading: Icon(Icons.live_help_outlined,size: 21,color: Appcolors.mailtext,),
-                  title: Text("help",style: Apptextstyle.small(fontSize: 15,fontColor: Appcolors.condition),),
-                  trailing: Icon(Icons.arrow_forward_ios,size: 14,color: Appcolors.text,),
-                 ),
                   ListTile(
-                  leading: Icon(Icons.question_mark_outlined,size: 21,color: Appcolors.mailtext,),
-                  title: Text("FAQ",style: Apptextstyle.small(fontSize: 15,fontColor: Appcolors.condition),),
-                  trailing: Icon(Icons.arrow_forward_ios,size: 14,color: Appcolors.text,),
-                 ),
+                    leading: Icon(
+                      Icons.live_help_outlined,
+                      size: 21,
+                      color: Appcolors.mailtext,
+                    ),
+                    title: Text(
+                      "help",
+                      style: Apptextstyle.small(
+                        fontSize: 15,
+                        fontColor: Appcolors.condition,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Appcolors.text,
+                    ),
+                  ),
                   ListTile(
-                  leading: Icon(Icons.person_add_alt,size: 21,color: Appcolors.mailtext,),
-                  title: Text("Invite friends",style: Apptextstyle.small(fontSize: 15,fontColor: Appcolors.condition),),
-                  trailing: Icon(Icons.arrow_forward_ios,size: 14,color: Appcolors.text,),
-                 ),
+                    leading: Icon(
+                      Icons.question_mark_outlined,
+                      size: 21,
+                      color: Appcolors.mailtext,
+                    ),
+                    title: Text(
+                      "FAQ",
+                      style: Apptextstyle.small(
+                        fontSize: 15,
+                        fontColor: Appcolors.condition,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Appcolors.text,
+                    ),
+                  ),
                   ListTile(
-                  leading: Icon(Icons.description_outlined,size: 21,color: Appcolors.mailtext,),
-                  title: Text("Terms of Service",style: Apptextstyle.small(fontSize: 15,fontColor: Appcolors.condition),),
-                  trailing: Icon(Icons.arrow_forward_ios,size: 14,color: Appcolors.text,),
-                 ),
+                    leading: Icon(
+                      Icons.person_add_alt,
+                      size: 21,
+                      color: Appcolors.mailtext,
+                    ),
+                    title: Text(
+                      "Invite friends",
+                      style: Apptextstyle.small(
+                        fontSize: 15,
+                        fontColor: Appcolors.condition,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Appcolors.text,
+                    ),
+                  ),
                   ListTile(
-                  leading: Icon(Icons.privacy_tip_outlined,size: 21,color: Appcolors.mailtext,),
-                  title: Text("Privacy Policy",style: Apptextstyle.small(fontSize: 15,fontColor: Appcolors.condition),),
-                  trailing: Icon(Icons.arrow_forward_ios,size: 14,color: Appcolors.text,),
-                 )
+                    leading: Icon(
+                      Icons.description_outlined,
+                      size: 21,
+                      color: Appcolors.mailtext,
+                    ),
+                    title: Text(
+                      "Terms of Service",
+                      style: Apptextstyle.small(
+                        fontSize: 15,
+                        fontColor: Appcolors.condition,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Appcolors.text,
+                    ),
+                  ),
+                  ListTile(
+                    leading: Icon(
+                      Icons.privacy_tip_outlined,
+                      size: 21,
+                      color: Appcolors.mailtext,
+                    ),
+                    title: Text(
+                      "Privacy Policy",
+                      style: Apptextstyle.small(
+                        fontSize: 15,
+                        fontColor: Appcolors.condition,
+                      ),
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      size: 14,
+                      color: Appcolors.text,
+                    ),
+                  ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ),

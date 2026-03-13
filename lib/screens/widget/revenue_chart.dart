@@ -10,51 +10,77 @@ class RevenueChart extends StatelessWidget {
       height: 200,
       child: LineChart(
         LineChartData(
+          minY: 0,
+          maxY: 4000,
           gridData: FlGridData(show: false),
-          borderData: FlBorderData(show: false),
-
-          titlesData: FlTitlesData(
-            leftTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: true),
-            ),
-            bottomTitles: AxisTitles(
-              sideTitles: SideTitles(showTitles: true),
+          borderData: FlBorderData(
+            show: true,
+            border: const Border(
+              left: BorderSide(color: Colors.white24),
+              bottom: BorderSide(color: Colors.white24),
             ),
           ),
-
+          titlesData: FlTitlesData(
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                interval: 1000,
+                getTitlesWidget: (value, meta) {
+                  return Text(
+                    '${(value ~/ 1000)}K',
+                    style: const TextStyle(color: Colors.white54, fontSize: 12),
+                  );
+                },
+              ),
+            ),
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                interval: 1,
+                getTitlesWidget: (value, meta) {
+                  const days = ['01', '02', '03', '04', '05', '06', '07', '08'];
+                  if (value.toInt() >= 0 && value.toInt() < days.length) {
+                    return Text(
+                      days[value.toInt()],
+                      style: const TextStyle(
+                        color: Colors.white54,
+                        fontSize: 12,
+                      ),
+                    );
+                  }
+                  return const Text('');
+                },
+              ),
+            ),
+          ),
           lineBarsData: [
             LineChartBarData(
               isCurved: true,
               barWidth: 3,
               dotData: FlDotData(show: false),
-
               gradient: const LinearGradient(
-                colors: [
-                  Colors.blue,
-                  Colors.cyan
-                ],
+                colors: [Color(0xFF00BFFF), Color(0xFF007FA7)],
               ),
-
               belowBarData: BarAreaData(
                 show: true,
                 gradient: LinearGradient(
                   colors: [
-                    Colors.blue.withOpacity(0.4),
-                    Colors.transparent
+                    const Color(0xFF00BFFF).withOpacity(0.4),
+                    const Color(0xFF007FA7).withOpacity(0.0),
                   ],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                 ),
               ),
-
               spots: const [
-                FlSpot(0, 1),
-                FlSpot(1, 3),
-                FlSpot(2, 2),
-                FlSpot(3, 4),
-                FlSpot(4, 3),
-                FlSpot(5, 5),
-                FlSpot(6, 4),
+                FlSpot(0, 1000),
+                FlSpot(1, 2000),
+                FlSpot(2, 1500),
+                FlSpot(3, 3000),
+                FlSpot(4, 2500),
+                FlSpot(5, 3500),
+                FlSpot(6, 2800),
+                FlSpot(7, 3200),
               ],
             ),
           ],

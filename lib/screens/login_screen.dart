@@ -20,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool ishidden = true;
   final formkey = GlobalKey<FormState>();
   final AuthController authController = AuthController();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,29 +148,58 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20.h),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () async {
-                        log("button pressed");
+                      onPressed: isLoading
+                          ? null
+                          : () async {
+                              if (formkey.currentState!.validate()) {
+                                setState(() {
+                                  isLoading = true;
+                                });
 
-                        if (formkey.currentState!.validate()) {
-                          final user = await authController.login(
-                            usernamecontroller.text,
-                            passwordcontroller.text,
-                          );
+                                try {
+                                  print(
+                                    "Login button pressed, inputs validated",
+                                  );
 
-                          if (user != null) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const DashboardScreen(),
-                              ),
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text("Login Failed")),
-                            );
-                          }
-                        }
-                      },
+                                  final user = await authController.login(
+                                    usernamecontroller.text.trim(),
+                                    passwordcontroller.text.trim(),
+                                  );
+
+                                  print("Login controller returned: $user");
+
+                                  if (user != null) {
+                                    print("Navigating to Dashboard");
+
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const DashboardScreen(),
+                                      ),
+                                    );
+                                  } else {
+                                    print("Login failed");
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(
+                                        content: Text("Login Failed"),
+                                      ),
+                                    );
+                                  }
+                                } catch (e) {
+                                  print("Login error: $e");
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("An error occurred: $e"),
+                                    ),
+                                  );
+                                } finally {
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                }
+                              }
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Appcolors.buttoncolor,
                         shape: RoundedRectangleBorder(

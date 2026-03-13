@@ -13,10 +13,10 @@ class LoginModel {
 
   factory LoginModel.fromJson(Map<String, dynamic> json) {
     return LoginModel(
-      accessToken: json["data"]["access"],
-      refreshToken: json["data"]["refresh"],
-      userId: json["data"]["user_id"],
-      username: json["data"]["username"],
+      accessToken: json["access"] ?? json["access_token"] ?? "",
+      refreshToken: json["refresh"] ?? json["refresh_token"] ?? "",
+      userId: json["user_id"] ?? json["id"] ?? 0,
+      username: json["username"] ?? "",
     );
   }
 }

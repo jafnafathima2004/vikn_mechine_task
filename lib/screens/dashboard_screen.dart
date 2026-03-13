@@ -58,9 +58,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
-                    Text("Revenue", style: TextStyle(color: Colors.white)),
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children:  [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                    Column(children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("SAR ",style:Apptextstyle.small(fontColor: Appcolors.secondarytext),),
+                            Text("2,78,000.00",style: Apptextstyle.small(),)
+                          ],
+                        ),
+                          Row(
+                          children: [
+                            Text("+12% ",style:Apptextstyle.small(fontColor: Colors.green),),
+                            Text("than last month",style: Apptextstyle.small(fontColor: Appcolors.secondarytext),)
+                          ],
+                        ),
+                        
+                    ],),
+                      Text("Revenue", style:Apptextstyle.small(fontSize: 16))]),
                     SizedBox(height: 20),
                     RevenueChart(),
                   ],
