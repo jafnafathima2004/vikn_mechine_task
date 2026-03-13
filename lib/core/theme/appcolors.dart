@@ -17,6 +17,8 @@ class Appcolors {
   static const Color box=Color(0xFF000000);
   static const Color notext=Color(0xFF565656);
   static const Color condition=Color(0xFFF6F6F6);
+  static const Color pending=Color(0xFF0E74F4);
+  static const Color roletext=Color(0xFFAEAEAE);
   // gradient
   static  List<Color> primeryGradient = [
      Color(0xFF000000), 
