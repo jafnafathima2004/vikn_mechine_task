@@ -4,6 +4,7 @@ import 'package:vikn_mechine_task/core/assets/assetreasource.dart';
 import 'package:vikn_mechine_task/core/theme/appcolors.dart';
 import 'package:vikn_mechine_task/core/theme/apptextstyle.dart';
 import 'package:vikn_mechine_task/screens/login_screen.dart';
+import 'package:vikn_mechine_task/shared_pref_helper/shared_prefrence.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -218,7 +219,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         borderRadius: BorderRadiusGeometry.circular(30.r)
                       )
                     ),
-                    onPressed: (){
+                    onPressed: () async {
+                        await SharedPrefHelper.logout();
                       Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>LoginScreen()), (route) => false);
                     }, child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vikn_mechine_task/controllers/sales_controller.dart';
 import 'package:vikn_mechine_task/core/theme/appcolors.dart';
 import 'package:vikn_mechine_task/core/theme/apptextstyle.dart';
 import 'package:vikn_mechine_task/screens/filter_screen.dart';
@@ -13,6 +14,16 @@ class SaleslistScreen extends StatefulWidget {
 
 class _SaleslistScreenState extends State<SaleslistScreen> {
 TextEditingController searchcontroller=TextEditingController();
+final SalesController controller = SalesController();
+@override
+void initState() {
+  super.initState();
+  loadSales();
+}
+
+void loadSales() async {
+  await controller.getSalesList();
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(

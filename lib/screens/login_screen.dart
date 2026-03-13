@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vikn_mechine_task/controllers/auth_controller.dart';
@@ -148,34 +147,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20.h),
                   Center(
                     child: ElevatedButton(
-                     onPressed: () async {
-  log("button pressed");
+                      onPressed: () async {
+                        log("button pressed");
 
-  if (formkey.currentState!.validate()) {
+                        if (formkey.currentState!.validate()) {
+                          final user = await authController.login(
+                            usernamecontroller.text,
+                            passwordcontroller.text,
+                          );
 
-    final user = await authController.login(
-      usernamecontroller.text,
-      passwordcontroller.text,
-    );
-
-    if (user != null) {
-
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const DashboardScreen(),
-        ),
-      );
-
-    } else {
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text("Login Failed")),
-      );
-
-    }
-  }
-},
+                          if (user != null) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const DashboardScreen(),
+                              ),
+                            );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Login Failed")),
+                            );
+                          }
+                        }
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Appcolors.buttoncolor,
                         shape: RoundedRectangleBorder(
