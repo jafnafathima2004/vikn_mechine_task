@@ -148,21 +148,34 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20.h),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () async {
-                        log("button pressed");
-                        if (formkey.currentState!.validate()) {
-                          await authController.login(
-                            usernamecontroller.text,
-                            passwordcontroller.text,
-                          );
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DashboardScreen(),
-                            ),
-                          );
-                        }
-                      },
+                     onPressed: () async {
+  log("button pressed");
+
+  if (formkey.currentState!.validate()) {
+
+    final user = await authController.login(
+      usernamecontroller.text,
+      passwordcontroller.text,
+    );
+
+    if (user != null) {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const DashboardScreen(),
+        ),
+      );
+
+    } else {
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Login Failed")),
+      );
+
+    }
+  }
+},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Appcolors.buttoncolor,
                         shape: RoundedRectangleBorder(
