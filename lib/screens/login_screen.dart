@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:vikn_mechine_task/controllers/auth_controller.dart';
 import 'package:vikn_mechine_task/core/assets/assetreasource.dart';
 import 'package:vikn_mechine_task/core/theme/appcolors.dart';
 import 'package:vikn_mechine_task/core/theme/apptextstyle.dart';
@@ -17,6 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordcontroller = TextEditingController();
   bool ishidden = true;
   final formkey = GlobalKey<FormState>();
+  final AuthController authController = AuthController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,9 +148,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(height: 20.h),
                   Center(
                     child: ElevatedButton(
-                      onPressed: () {
-                        if(formkey.currentState!.validate()){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>DashboardScreen()));
+                      onPressed: () async {
+                        log("button pressed");
+                        if (formkey.currentState!.validate()) {
+                          await authController.login(
+                            usernamecontroller.text,
+                            passwordcontroller.text,
+                          );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DashboardScreen(),
+                            ),
+                          );
                         }
                       },
                       style: ElevatedButton.styleFrom(
