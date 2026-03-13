@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vikn_mechine_task/controllers/sales_controller.dart';
 import 'package:vikn_mechine_task/core/theme/appcolors.dart';
 import 'package:vikn_mechine_task/core/theme/apptextstyle.dart';
+import 'package:vikn_mechine_task/models/sales_model.dart';
 import 'package:vikn_mechine_task/screens/filter_screen.dart';
 
 class SaleslistScreen extends StatefulWidget {
@@ -15,6 +16,8 @@ class SaleslistScreen extends StatefulWidget {
 class _SaleslistScreenState extends State<SaleslistScreen> {
 TextEditingController searchcontroller=TextEditingController();
 final SalesController controller = SalesController();
+List<SalesModel> salesList = [];
+
 @override
 void initState() {
   super.initState();
@@ -22,7 +25,10 @@ void initState() {
 }
 
 void loadSales() async {
-  await controller.getSalesList();
+  salesList = await controller.getSalesList();
+  setState(() {
+    
+  });
 }
   @override
   Widget build(BuildContext context) {
@@ -96,6 +102,36 @@ void loadSales() async {
               ]
             ),
             Divider(color: Appcolors.border,),
+            SizedBox(height: 10.h,),
+            Expanded(
+  child: ListView.builder(
+    itemCount: salesList.length,
+    itemBuilder: (context, index) {
+
+      final sale = salesList[index];
+
+      return ListTile(
+        title: Text(sale.voucherNo,style: Apptextstyle.small(fontSize: 13),),
+        subtitle: Text(sale.customerName,style: Apptextstyle.medium(fontSize: 14),),
+        trailing: Column(
+            mainAxisSize: MainAxisSize.min,
+  crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+        Text(sale.status,style: Apptextstyle.small(fontColor: Appcolors.invoiced),),
+        Row(
+            mainAxisSize: MainAxisSize.min,
+
+          children:[ 
+         Text("SAR. ",style: Apptextstyle.small(fontSize: 12,fontColor: Appcolors.secondarytext),),
+         Text("${ sale.grandTotal}",style: Apptextstyle.small(),)
+          ]
+          ),
+        ]
+        ),
+      );
+    },
+  ),
+)
           ],
         ),
       ),
