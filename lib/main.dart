@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vikn_mechine_task/screens/login_screen.dart';
 
 void main() {
@@ -11,9 +12,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-    home: LoginScreen(),
+    return ScreenUtilInit(
+      designSize: Size(430, 932),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+      home: LoginScreen(),
+      ),
     );
   }
 }

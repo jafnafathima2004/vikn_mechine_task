@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:vikn_mechine_task/core/theme/appcolors.dart';
 
@@ -11,7 +12,7 @@ class Apptextstyle {
   }){
     return GoogleFonts.poppins(
         color: fontColor??Appcolors.text,
-      fontSize: fontSize??14,
+      fontSize: fontSize??14.sp,
       fontWeight: fontWeight??FontWeight.w400
     );
   }
@@ -23,7 +24,7 @@ class Apptextstyle {
  { 
   return GoogleFonts.poppins(
     color: fontColor??Appcolors.text,
-      fontSize: fontSize??18,
+      fontSize: fontSize??18.sp,
       fontWeight: fontWeight??FontWeight.w500
   );}
   static TextStyle large({
@@ -34,7 +35,7 @@ class Apptextstyle {
  { 
   return GoogleFonts.poppins(
     color: fontColor??Appcolors.text,
-      fontSize: fontSize??20,
+      fontSize: fontSize??20.sp,
       fontWeight: fontWeight??FontWeight.w600
   );}
 
