@@ -19,6 +19,9 @@ class Appcolors {
   static const Color condition=Color(0xFFF6F6F6);
   static const Color pending=Color(0xFF0E74F4);
   static const Color roletext=Color(0xFFAEAEAE);
+  static const Color circle=Color(0xFF141414);
+  static const Color saleslist=Color(0xFF131313);
+  static const Color arrow=Color(0xFFD8D8D8);
   // gradient
   static  List<Color> primeryGradient = [
      Color(0xFF000000), 
@@ -28,4 +31,7 @@ class Appcolors {
     Color.fromARGB(255, 27, 0, 29),
      Color(0xFF000000), 
   ];
+    // opacity
+  static Color get opacitycontainer =>
+      const Color(0xFF0F0F0F).withOpacity(0.5);
 }

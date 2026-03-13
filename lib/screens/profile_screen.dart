@@ -22,7 +22,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 63),
+            IconButton(onPressed: (){
+              Navigator.pop(context);
+            }, icon: Icon(Icons.arrow_back,color: Appcolors.text,)),
+            SizedBox(height: 30.h),
             Container(
               padding: EdgeInsets.all(16),
               height: 352.h,
@@ -101,13 +104,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 borderRadius: BorderRadius.circular(30.r),
                               ),
                                
-                                child: Image.asset(
-                                    Assetreasource.stars,
-                                     fit: BoxFit.contain,
-                                   height: 14.h,
-                                    width: 14.w,
-                                   
+                                child: Center(
+                                  child: SizedBox(
+                                     height: 20.h,
+                                        width: 20.w,
+                                    child: Image.asset(
+                                        Assetreasource.stars,
+                                         fit: BoxFit.contain,
+                                      
+                                       
+                                      ),
                                   ),
+                                ),
                                 
                               
                             ),
@@ -160,12 +168,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 borderRadius: BorderRadius.circular(30.r),
                               ),
                               child:
-                               Image.asset(
-                                Assetreasource.verifytick,
-                                height: 15.h,
-                                width: 12.w,
-                                fit: BoxFit.contain,
-                              ),
+                               Center(
+                                 child: SizedBox(
+                                   height: 20.h,
+                                    width: 20.w,
+                                   child: Image.asset(
+                                    Assetreasource.verifytick,
+                                   
+                                    fit: BoxFit.contain,
+                                                                 ),
+                                 ),
+                               ),
                             ),
                           ),
                                 Positioned(

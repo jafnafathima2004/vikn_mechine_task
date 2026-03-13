@@ -5,4 +5,7 @@ class Assetreasource {
   static const edit="assets/profile/edit_icon.png";
   static const stars="assets/profile/stars.png";
   static const verifytick="assets/profile/shield-tick.png";
+  static const logo="assets/dashboard/logo.png";
+  static const booking="assets/dashboard/bookings_icon.png";
+  static const invoices="assets/dashboard/invoice_icon.png";
 }

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:vikn_mechine_task/core/assets/assetreasource.dart';
 import 'package:vikn_mechine_task/core/theme/appcolors.dart';
 import 'package:vikn_mechine_task/core/theme/apptextstyle.dart';
+import 'package:vikn_mechine_task/screens/dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -145,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: ElevatedButton(
                       onPressed: () {
                         if(formkey.currentState!.validate()){
-
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>DashboardScreen()));
                         }
                       },
                       style: ElevatedButton.styleFrom(
